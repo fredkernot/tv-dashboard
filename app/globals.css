@@ -1,26 +1,242 @@
 @import "tailwindcss";
 
+/* ============================================================================
+   Round Treasury design tokens.
+
+   Source of truth: .claude/skills/round-design-system/SKILL.md
+   How to use them here: DESIGN.md
+
+   Rule zero: never invent a colour, font or radius. If it is not in this
+   file, it is not on brand.
+   ========================================================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- Brand palette (§1) — the only 7 brand colours ------------------- */
+  --neon: #ddff00; /* the signal colour: one accent per view */
+  --ink: #10110d; /* all body/heading text on light; dark backgrounds */
+  --neon-dim: #9cb400; /* quote marks, hover borders */
+  --neon-hover: #e9ff4d; /* neon button hover only */
+  --grey: #bdbeba; /* placeholders, chart axis labels, disabled */
+  --light-grey: #e0e1df; /* rules, dividers, oversized decorative glyphs */
+  --off-white: #f9f9f9;
+
+  /* --- Working greys on light (§1) ------------------------------------- */
+  --ink-2: #45473e; /* secondary body text */
+  --ink-3: #55574c; /* tertiary body text */
+  --caption: #686a60; /* captions, small labels */
+  --meta: #8a8c80; /* faint meta, page numbers */
+  --rule: #e4e5df; /* borders and 1px rules */
+  --step-1: #f6f7f2; /* neutral card fill */
+  --step-2: #e7e8e1; /* one shade darker */
+  --soft: #f4f5f0; /* "soft" background, chart area fill */
+  --grid-line: #f0f1ec;
+  --placeholder: #f1f2ed; /* image placeholder fill */
+
+  /* --- App chrome (§1) — dark UI: tools, dashboards, internal apps ------
+     This dashboard is an internal tool, so these are its working surfaces. */
+  --bg: #0a0a0a;
+  --panel: #121310;
+  --panel-2: #171814;
+  --border: #26271f;
+  --border-2: #33342a;
+  --fg: #f2f2ee;
+  --muted: #8b8d80;
+  --radius: 10px;
+
+  /* --- Text on a #10110D dark surface (§1) ------------------------------ */
+  --on-dark-body: #bdbeba;
+  --on-dark-meta: #8b8d80;
+  --on-dark-faint: #6f7166;
+
+  /* --- Semantic (§1) — comparison-row icons only, never decoration ------ */
+  --positive: #4caf2e;
+  --negative: #c92f2f;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colour utilities: bg-neon, text-ink, border-line, text-muted, … */
+  --color-neon: var(--neon);
+  --color-neon-dim: var(--neon-dim);
+  --color-neon-hover: var(--neon-hover);
+  --color-ink: var(--ink);
+  --color-canvas: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--border);
+  --color-line-2: var(--border-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-soft: var(--soft);
+  --color-rule: var(--rule);
+  --color-positive: var(--positive);
+  --color-negative: var(--negative);
+
+  /* Roc Grotesk only, weights 400 and 500. There is no bold. */
+  --font-sans: var(--font-roc-grotesk), ui-sans-serif, system-ui, sans-serif;
+
+  /* Radii (§3): 0 for structure, 8–10px for cards/media, 999px for pills. */
+  --radius-chrome: var(--radius);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  /* --- Type scale (§2) ------------------------------------------------
+     Specified on the 1280×720 canvas and expressed in rem so it scales
+     proportionally. Tracking, leading and weight ride along with each
+     role: use the role, never an eyeballed size. */
+
+  --text-hero: 12.5rem; /* 200px — hero stat */
+  --text-hero--line-height: 1;
+  --text-hero--letter-spacing: -0.02em;
+  --text-hero--font-weight: 500;
+
+  --text-statement: 4rem; /* 64px */
+  --text-statement--line-height: 1.12;
+  --text-statement--letter-spacing: -0.015em;
+  --text-statement--font-weight: 500;
+
+  --text-metric: 3.875rem; /* 62px — metric value */
+  --text-metric--line-height: 1;
+  --text-metric--letter-spacing: -0.015em;
+  --text-metric--font-weight: 500;
+
+  --text-h1: 3.625rem; /* 58px */
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.015em;
+  --text-h1--font-weight: 500;
+
+  --text-h2: 2.75rem; /* 44px — also the quote size */
+  --text-h2--line-height: 1.12;
+  --text-h2--letter-spacing: -0.01em;
+  --text-h2--font-weight: 500;
+
+  --text-card: 1.5rem; /* 24px — card / feature title */
+  --text-card--line-height: 1.25;
+  --text-card--font-weight: 500;
+
+  --text-lead: 1.3125rem; /* 21px — sub / lead */
+  --text-lead--line-height: 1.45;
+  --text-lead--font-weight: 400;
+
+  --text-body: 1.1875rem; /* 19px */
+  --text-body--line-height: 1.5;
+  --text-body--font-weight: 400;
+
+  --text-small: 0.875rem; /* 14px */
+  --text-small--line-height: 1.5;
+  --text-small--font-weight: 400;
+
+  --text-caption: 0.75rem; /* 12px — caption / meta */
+  --text-caption--line-height: 1.4;
+  --text-caption--font-weight: 400;
+
+  --text-kicker: 0.8125rem; /* 13px — uppercase label form */
+  --text-kicker--line-height: 1.4;
+  --text-kicker--letter-spacing: 0.16em;
+  --text-kicker--font-weight: 500;
 }
+
+/* --- Base ---------------------------------------------------------------- */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-roc-grotesk), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* Roc Grotesk has no bold. Never let the browser fake one. */
+  font-synthesis-weight: none;
+}
+
+/* §2: <b>/<strong> maps to weight 500, not bold. */
+b,
+strong {
+  font-weight: 500;
+}
+
+/* §4 Highlight: neon background, ink text. One per headline, at most. */
+mark {
+  background: var(--neon);
+  color: var(--ink);
+  padding: 0 0.06em;
+  border-radius: 2px;
+}
+
+/* On a neon surface, mark inverts: ink fill, neon text (§1). */
+.on-neon mark {
+  background: var(--ink);
+  color: var(--neon);
+}
+
+/* --- Backgrounds (§3) — six, no others ----------------------------------
+   white / neon / dark / soft are plain colour utilities; the two that need
+   real CSS live here. */
+
+@utility surface-grid {
+  background-color: #fff;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 5.6875rem 5.6875rem; /* 91px */
+  background-position: -1px -1px;
+}
+
+@utility surface-glow {
+  background-image:
+    radial-gradient(
+      760px 540px at 90% 114%,
+      rgba(221, 255, 0, 0.42),
+      rgba(221, 255, 0, 0) 64%
+    ),
+    radial-gradient(
+      560px 420px at -6% -12%,
+      rgba(221, 255, 0, 0.2),
+      rgba(221, 255, 0, 0) 60%
+    );
+  background-color: #fff;
+}
+
+/* --- House components (§2, §4) -------------------------------------------
+   Sizes are in rem, not px, so they scale with the TV canvas below. The
+   comment on each line is the design system's value on the 1280px canvas. */
+
+/* Kicker: a label preceded by a 4px vertical bar in currentColor. */
+.kick {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* 12px */
+  font-size: 1rem; /* 16px */
+  font-weight: 500;
+  margin-bottom: 1.375rem; /* 22px */
+}
+
+.kick::before {
+  content: "";
+  width: 0.25rem; /* 4px */
+  height: 1.3125rem; /* 21px */
+  background: currentColor;
+  flex: none;
+}
+
+/* Ruled row list: rows separated by a 1px rule, top rule on the first row. */
+.ruled > * {
+  border-top: 1px solid var(--border);
+  padding-block: 1.25rem; /* 20px */
+}
+
+.ruled > *:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+/* --- TV canvas -----------------------------------------------------------
+   The design system is specified on a 1280px-wide canvas (§3). A wall TV is
+   1920 or 3840 wide, so scale the root em with the viewport and every
+   rem-based token stays exactly in proportion. Opt in per route. */
+
+html:has(.tv-canvas) {
+  font-size: calc(100vw / 80); /* 16px at 1280px wide, 24px at 1920 */
+}
+
+.tv-canvas {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* §3: text does not shrink to fit, it is clipped */
 }

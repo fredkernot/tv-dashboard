@@ -1,15 +1,14 @@
 
 
 
-interface TriviaSlide {
-    kind: "trivia";
-    description: string;
+export interface BirthdaySlide {
+    kind: "birthday";
+    entries: { year: string; text: string}[];
 }
 
-interface BirthdaySlide {
-    kind: "birthday";
-    description: string;
-    date: Date;
+export interface TriviaSlide {
+    kind: "trivia";
+    entries: { fact: string; source: string}[];
 }
 
 interface SysStatusSlide {
