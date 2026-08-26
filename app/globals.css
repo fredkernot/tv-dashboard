@@ -76,6 +76,7 @@
 
   /* Radii (§3): 0 for structure, 8–10px for cards/media, 999px for pills. */
   --radius-chrome: var(--radius);
+  --radius-photo: 1rem; /* 16px — §3: 12–18px for large photos */
 }
 
 @theme {
@@ -239,4 +240,18 @@ html:has(.tv-canvas) {
   width: 100vw;
   height: 100vh;
   overflow: hidden; /* §3: text does not shrink to fit, it is clipped */
+}
+
+@theme {
+  --animate-brain-pulse: brain-pulse 4s ease-in-out infinite;
+}
+
+
+@keyframes brain-pulse {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50%      { opacity: 1;    transform: scale(1.025); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-brain-pulse { animation: none; opacity: 0.8; }
 }
