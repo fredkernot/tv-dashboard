@@ -1,5 +1,5 @@
 
-import { cache } from "react";
+
 import { z } from "zod";
 import type { BirthdaySlide } from "../types/slides.ts";
 import Anthropic from "@anthropic-ai/sdk";
@@ -30,8 +30,8 @@ async function pickMostInterestingBirthday(birthdays: Birthday[]): Promise<Birth
             {
                 role: "user",
                 content: 
-`Choose the evilest person's birthday from this list. Return the exact year and text of one candidate. Do not invent or edit any details.${JSON.stringify(birthdays)}`,
-//`Choose the most interesting birthday for a software-focused fintech startup from this list. Return the exact year and text of one candidate. Do not invent or edit any details.${JSON.stringify(birthdays)}`,
+//`Choose the ______ person's birthday from this list. Return the exact year and text of one candidate. Do not invent or edit any details.${JSON.stringify(birthdays)}`,
+`Choose the most interesting birthday for a software-focused fintech startup from this list. Return the exact year and text of one candidate. Do not invent or edit any details.${JSON.stringify(birthdays)}`,
             },
         ],
         output_config: { format: zodOutputFormat(BirthdaySchema) },
