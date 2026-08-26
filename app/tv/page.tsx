@@ -18,6 +18,7 @@ export default async function TvPage() {
     ];
 
     const dateOptions = {
+        timeZone: "Europe/London",
         weekday: "long",
         day: "numeric",
         month: "long",
