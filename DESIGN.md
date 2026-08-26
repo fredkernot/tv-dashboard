@@ -73,6 +73,10 @@ Provided in [app/globals.css](app/globals.css) and `components/brand/`:
 - `.kick` — the house kicker: a label behind a 4px vertical bar in
   `currentColor`. This is Round's signature label.
 - `.ruled` — the ruled row list used for agendas, checklists and next steps.
+- `.btn` with `.btn-primary` or `.btn-secondary` — the §4 button. Primary is
+  neon on ink, so it counts as the view's one neon element.
+- `rounded-photo` (16px) for large photos, `rounded-chrome` (10px) for cards and
+  thumbs. Structure stays square.
 - `mark` — neon highlight, ink text. Inverts inside `.on-neon`.
 - `surface-grid`, `surface-glow` — two of the six permitted backgrounds. The
   other four (`white`, `neon`, `dark`, `soft`) are plain colour utilities.

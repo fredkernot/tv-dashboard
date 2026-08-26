@@ -217,6 +217,37 @@ mark {
   flex: none;
 }
 
+/* Button (§4): 34px tall, 8px radius, 13px/500, 7px gap. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem; /* 7px */
+  height: 2.125rem; /* 34px */
+  padding-inline: 0.875rem;
+  border-radius: 0.5rem; /* 8px */
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 500;
+  line-height: 1;
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+/* Primary: neon fill, ink text. Remember this is the view's one neon element. */
+.btn-primary {
+  background: var(--neon);
+  color: var(--ink);
+}
+
+.btn-primary:hover {
+  background: var(--neon-hover);
+}
+
+/* Secondary: panel fill, no neon. Safe to use more than once in a view. */
+.btn-secondary {
+  background: var(--panel-2);
+  color: var(--fg);
+  border: 1px solid var(--border-2);
+}
+
 /* Ruled row list: rows separated by a 1px rule, top rule on the first row. */
 .ruled > * {
   border-top: 1px solid var(--border);
