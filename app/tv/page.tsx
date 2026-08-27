@@ -4,10 +4,12 @@ import { getTriviaInfo } from "@/lib/trivia";
 import { getBirthdayInfo } from "@/lib/birthday";
 import type { Slide } from "@/types/slides";
 
+export const revalidate = 3600
+
 export default async function TvPage() {
     const trivia = await getTriviaInfo();
     const birthday = await getBirthdayInfo();
-
+    
     const slides: Slide[] = [
         trivia,
         birthday,
