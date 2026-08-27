@@ -36,5 +36,3 @@ export async function getTriviaInfo(): Promise<TriviaSlide> {
             };
     }
 }
-
-getTriviaInfo().then((trivia) => console.log(trivia));
