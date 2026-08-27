@@ -11,7 +11,7 @@ interface SlideRotatorProps {
     intervalMs?: number;
 }
 
-export function SlideRotator({ slides, intervalMs = 1_000 }: SlideRotatorProps) {
+export function SlideRotator({ slides, intervalMs = 5_000 }: SlideRotatorProps) {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
