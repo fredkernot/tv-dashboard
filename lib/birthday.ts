@@ -31,7 +31,7 @@ async function pickMostInterestingBirthday(birthdays: Birthday[]): Promise<Birth
                 role: "user",
                 content: 
 //`Choose the most famous person's birthday from this list. Return the exact year and text of one candidate. Do not invent or edit any details.${JSON.stringify(birthdays)}`,
-`Choose the most interesting birthday for a software-focused fintech startup from this list. Return the exact year and text of one candidate. Do not invent or edit any details.${JSON.stringify(birthdays)}`,
+`Choose the most interesting person's birthday for a software-focused fintech startup from this list. Return the exact year and text of one candidate. Do not invent or edit any details.${JSON.stringify(birthdays)}`,
             },
         ],
         output_config: { format: zodOutputFormat(BirthdaySchema) },
